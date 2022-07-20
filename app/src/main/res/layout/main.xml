@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/IngredientListNavigationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ingredient List"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        />
+
+    <Button
+        android:id="@+id/SettingsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chefable"
+        android:textSize="35dp"
+        android:textAlignment="center"
+        android:textColor="@color/teal_200"
+        android:layout_toRightOf="@+id/IngredientListNavigationButton"
+        android:layout_toLeftOf="@+id/SettingsButton"
+        android:layout_alignParentTop="true"
+        />
+
+    <EditText
+        android:id="@+id/SearchBarField"
+        android:layout_width="318dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/IngredientListNavigationButton"
+        android:layout_alignParentLeft="true"
+        />
+
+    <Button
+        android:id="@+id/SearchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:layout_toRightOf="@id/SearchBarField"
+        android:layout_below="@id/SettingsButton"
+        android:layout_alignParentRight="true"
+        />
+
+    <ListView
+        android:id="@+id/ItemsList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/SearchBarField"
+        android:layout_above="@id/AddToFavoritesButton"
+        />
+
+    <Button
+        android:id="@+id/AddToFavoritesButton"
+        android:layout_width="206dp"
+        android:layout_height="wrap_content"
+        android:text="Add To Favorites"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        />
+
+    <Button
+        android:id="@+id/ViewFavoritesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Favorites"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/AddToFavoritesButton"
+        />
+
+</RelativeLayout>
