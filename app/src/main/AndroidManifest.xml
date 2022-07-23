@@ -12,6 +12,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Chefable"
-        tools:targetApi="31" />
+        tools:targetApi="31">
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RecipeViewer"
+            android:exported="false" />
+        <activity
+            android:name=".IngredientsCabinet"
+            android:exported="false" />
+        <activity
+            android:name=".Favorites"
+            android:exported="false" />
+    </application>
 
 </manifest>
