@@ -10,6 +10,7 @@
         android:text="Ingredient List"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
+        android:onClick="IngredientList_Intent"
         />
 
     <Button
@@ -19,6 +20,7 @@
         android:text="Settings"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
+        android:onClick="Settings_Intent"
         />
 
     <TextView
@@ -45,11 +47,11 @@
         android:id="@+id/SearchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search"
-        android:layout_toRightOf="@id/SearchBarField"
         android:layout_below="@id/SettingsButton"
         android:layout_alignParentRight="true"
-        />
+        android:layout_toRightOf="@id/SearchBarField"
+        android:text="Search"
+        android:onClick="Search_Action"/>
 
     <ListView
         android:id="@+id/ItemsList"
@@ -66,6 +68,7 @@
         android:text="Add To Favorites"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
+        android:onClick="AddFavorite_Action"
         />
 
     <Button
@@ -76,6 +79,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@id/AddToFavoritesButton"
+        android:onClick="ViewFavorites_Intent"
         />
 
 </RelativeLayout>
