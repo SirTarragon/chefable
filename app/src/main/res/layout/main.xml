@@ -17,7 +17,7 @@
         android:id="@+id/SettingsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Settings"
+        android:text="@string/setting_button"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:onClick="Settings_Intent"
@@ -26,7 +26,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Chefable"
+        android:text="@string/app_name"
         android:textSize="35dp"
         android:textAlignment="center"
         android:textColor="@color/teal_200"
@@ -50,7 +50,7 @@
         android:layout_below="@id/SettingsButton"
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@id/SearchBarField"
-        android:text="Search"
+        android:text="@string/search_button"
         android:onClick="Search_Action"/>
 
     <ListView
@@ -64,7 +64,7 @@
         android:id="@+id/AddToFavoritesButton"
         android:layout_width="206dp"
         android:layout_height="wrap_content"
-        android:text="Add To Favorites"
+        android:text="@string/add_favorites"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:onClick="AddFavorite_Action"
@@ -74,7 +74,7 @@
         android:id="@+id/ViewFavoritesButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View Favorites"
+        android:text="@string/view_favorites"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@id/AddToFavoritesButton"

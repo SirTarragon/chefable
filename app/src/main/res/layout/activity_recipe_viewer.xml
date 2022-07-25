@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RecipeViewer">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TableRow>
+        <Button android:id="@+id/HomeButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/back_button"
+            android:onClick="Home_Intent"
+            />
+    </TableRow>
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/web_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5" />
+</TableLayout>

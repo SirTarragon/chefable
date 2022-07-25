@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Chefable</string>
+    <string name="host">https://spoonacular.com/</string>
+    <string name="back_button">Back</string>
+    <string name="ingredient_list">Ingredient List</string>
+    <string name="search_button">Search</string>
+    <string name="setting_button">Settings</string>
+    <string name="add_favorites">Add to Favorites</string>
+    <string name="view_favorites">View Favorites</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
