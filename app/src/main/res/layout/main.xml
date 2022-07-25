@@ -57,9 +57,8 @@
         android:id="@+id/ItemsList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/SearchBarField"
         android:layout_above="@id/AddToFavoritesButton"
-        />
+        android:layout_below="@id/SearchBarField" />
 
     <Button
         android:id="@+id/AddToFavoritesButton"
