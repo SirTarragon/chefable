@@ -30,7 +30,7 @@ public class IngredientsCabinet extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingredients_cabinet);
         input_ingred = findViewById(R.id.ingredient_name_input);
-        ingred_list = findViewById(R.id.list_favorites);
+        ingred_list = findViewById(R.id.list_ingredients);
         ingredArrayList = new ArrayList<>();
 
         Query query = FirebaseDatabase.getInstance().getReference().child("Ingredients");
@@ -38,6 +38,7 @@ public class IngredientsCabinet extends AppCompatActivity {
                 android.R.layout.simple_list_item_1,
                 ingredArrayList);
         ingred_list.setAdapter(arrayAdapter);
+
 
         query.addValueEventListener(new ValueEventListener() {
             @Override
