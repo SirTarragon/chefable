@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".RecipeViewer">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="35dp"
+        android:textAlignment="center"
+        android:textColor="@color/teal_200"
+        />
+
     <TableRow>
         <Button android:id="@+id/HomeButton"
             android:layout_width="match_parent"

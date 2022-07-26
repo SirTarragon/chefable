@@ -1,9 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".IngredientsCabinet">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="35dp"
+        android:textAlignment="center"
+        android:textColor="@color/teal_200"
+        />
+
+    <EditText android:id="@+id/ingredient_name_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your ingredient" />
+
+    <TableRow>
+        <EditText
+            android:id="@+id/quantity_input"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:inputType="number" />
+        <Button android:id="@+id/submit_ingedient"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:text="@string/submit" />
+    </TableRow>
+    <ListView android:id="@+id/list_ingredients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="10">
+    </ListView>
+    <TableRow>
+        <Button android:id="@+id/back_button"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:text="@string/back_button"
+            android:onClick="Home_Intent"/>
+        <Button android:id="@+id/delete_ingredient_button"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:text="@string/remove_ingred" />
+    </TableRow>
+</TableLayout>
