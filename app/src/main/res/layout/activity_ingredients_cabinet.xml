@@ -16,7 +16,6 @@
         />
 
     <TableRow>
-
         <EditText
             android:id="@+id/ingredient_name_input"
             android:layout_width="220dp"
@@ -31,7 +30,8 @@
     <ListView android:id="@+id/list_ingredients"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="10">
+        android:layout_weight="10"
+        android:choiceMode="singleChoice">
     </ListView>
     <TableRow>
         <Button android:id="@+id/back_button"

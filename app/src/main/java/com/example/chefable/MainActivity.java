@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity
     ArrayList<Recipe> recipeArrayList;
     ListView itemsList;
     ArrayAdapter<Recipe> arrayAdapter;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -39,20 +39,6 @@ public class MainActivity extends AppCompatActivity
                 recipeArrayList);
         itemsList.setAdapter(arrayAdapter);
 
-        /*
-        itemsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Recipe item = (Recipe) itemsList.getSelectedItem();
-                Bundle bundle = new Bundle();
-                bundle.putString("ARG_LINK", item.getLink().toString());
-                Intent intent = new Intent(MainActivity.this, RecipeViewer.class);
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-        });
-
-         */
     }
 
     public void IngredientList_Intent(View view) {

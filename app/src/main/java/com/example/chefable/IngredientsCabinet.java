@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -39,7 +40,6 @@ public class IngredientsCabinet extends AppCompatActivity {
                 ingredArrayList);
         ingred_list.setAdapter(arrayAdapter);
 
-
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -64,6 +64,7 @@ public class IngredientsCabinet extends AppCompatActivity {
     public void Submit_Action(View view) {
         String val = input_ingred.getText().toString();
         if (val.length() != 0) {
+
             Query query = FirebaseDatabase.getInstance().getReference()
                     .child("Ingredients").orderByValue().equalTo(val);
 

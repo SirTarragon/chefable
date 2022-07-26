@@ -3,13 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Personal Projects/chefable/app/src/main/res/layout/activity_favorites.xml" value="0.2617753623188406" />
-        <entry key="..\:/Personal Projects/chefable/app/src/main/res/layout/activity_ingredients_cabinet.xml" value="0.2617753623188406" />
+        <entry key="..\:/Personal Projects/chefable/app/src/main/res/layout/activity_favorites.xml" value="0.1" />
+        <entry key="..\:/Personal Projects/chefable/app/src/main/res/layout/activity_ingredients_cabinet.xml" value="0.1" />
         <entry key="..\:/Personal Projects/chefable/app/src/main/res/layout/activity_recipe_viewer.xml" value="0.30027173913043476" />
         <entry key="..\:/Personal Projects/chefable/app/src/main/res/layout/activity_settings.xml" value="0.3359375" />
         <entry key="..\:/Personal Projects/chefable/app/src/main/res/layout/fragment_ingredients_list.xml" value="0.2864583333333333" />
         <entry key="..\:/Personal Projects/chefable/app/src/main/res/layout/fragment_web.xml" value="0.3359375" />
-        <entry key="..\:/Personal Projects/chefable/app/src/main/res/layout/main.xml" value="0.22192028985507245" />
+        <entry key="..\:/Personal Projects/chefable/app/src/main/res/layout/main.xml" value="0.1" />
       </map>
     </option>
   </component>
