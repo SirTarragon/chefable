@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -17,11 +16,11 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Favorites extends AppCompatActivity {
-    ArrayList<Favorite> favoritesArrayList;
+    ArrayList<Recipe> favoritesArrayList;
     ListView favorites_list;
+    ArrayAdapter<Recipe> arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +30,7 @@ public class Favorites extends AppCompatActivity {
         favoritesArrayList = new ArrayList<>();
 
         Query query = FirebaseDatabase.getInstance().getReference().child("Favorites");
-        ArrayAdapter<Favorite> arrayAdapter = new ArrayAdapter<>(Favorites.this,
+        arrayAdapter = new ArrayAdapter<>(Favorites.this,
                 android.R.layout.simple_list_item_1,
                 favoritesArrayList);
         favorites_list.setAdapter(arrayAdapter);
@@ -40,7 +39,7 @@ public class Favorites extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot favorite_recipe : snapshot.getChildren()) {
-                    favoritesArrayList.add(favorite_recipe.getValue(Favorite.class));
+                    favoritesArrayList.add(favorite_recipe.getValue(Recipe.class));
                     arrayAdapter.notifyDataSetChanged();
                 }
             }
@@ -58,7 +57,7 @@ public class Favorites extends AppCompatActivity {
     }
 
     public void RemoveFav_Action(View view) {
-        Favorite item = (Favorite) favorites_list.getSelectedItem();
+        Recipe item = (Recipe) favorites_list.getSelectedItem();
         if (item != null) {
             favoritesArrayList.remove(item);
 
@@ -69,6 +68,7 @@ public class Favorites extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for(DataSnapshot removal : snapshot.getChildren()) {
                         removal.getRef().removeValue();
+
                     }
                 }
 
@@ -81,7 +81,7 @@ public class Favorites extends AppCompatActivity {
     }
 
     public void ViewWeb_Intent(View view) {
-        Favorite item = (Favorite) favorites_list.getSelectedItem();
+        Recipe item = (Recipe) favorites_list.getSelectedItem();
         Bundle bundle = new Bundle();
         bundle.putString("ARG_LINK", item.getLink().toString());
         Intent intent = new Intent(this, RecipeViewer.class);

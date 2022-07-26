@@ -2,12 +2,12 @@ package com.example.chefable;
 
 import android.net.Uri;
 
-public class Favorite {
+public class Recipe {
     private int ID;
     private String title;
     private Uri link;
 
-    public Favorite(int id, String name) {
+    public Recipe(int id, String name) {
         ID = id;
         title = name;
         link = generateLink(id, name);

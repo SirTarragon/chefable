@@ -25,7 +25,8 @@
         <Button android:id="@+id/submit_ingedient"
             android:layout_height="match_parent"
             android:layout_width="wrap_content"
-            android:text="@string/submit" />
+            android:text="@string/submit"
+            android:onClick="Submit_Action"/>
     </TableRow>
     <ListView android:id="@+id/list_ingredients"
         android:layout_width="match_parent"
@@ -41,6 +42,7 @@
         <Button android:id="@+id/delete_ingredient_button"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:text="@string/remove_ingred" />
+            android:text="@string/remove_ingred"
+            android:onClick="RemoveIngred_Action"/>
     </TableRow>
 </TableLayout>
