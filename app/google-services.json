@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "232179170506",
+    "firebase_url": "https://chefable-53edb-default-rtdb.firebaseio.com",
+    "project_id": "chefable-53edb",
+    "storage_bucket": "chefable-53edb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:232179170506:android:879235650ba7890179c833",
+        "android_client_info": {
+          "package_name": "com.example.chefable"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "232179170506-g20bnn1jkespoih944ucj1c9ctukd4t8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-c9Kc6u0DJzjozI9N-UoTJtpBgbICsXw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "232179170506-g20bnn1jkespoih944ucj1c9ctukd4t8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

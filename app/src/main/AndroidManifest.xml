@@ -13,11 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Chefable"
         tools:targetApi="31">
-        <provider
-            android:name=".ChefableContentProvider"
-            android:authorities="com.example.chefable"
-            android:enabled="true"
-            android:exported="true"></provider>
         <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
