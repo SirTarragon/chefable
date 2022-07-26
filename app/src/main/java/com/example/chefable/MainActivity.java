@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        itemsList = (ListView) findViewById(R.id.ItemsList);
+        itemsList = findViewById(R.id.ItemsList);
     }
 
     public void IngredientList_Intent(View view) {

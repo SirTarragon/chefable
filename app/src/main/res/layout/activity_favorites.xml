@@ -20,18 +20,25 @@
         android:layout_weight="10">
     </ListView>
     <TableRow>
-        <Button android:id="@+id/back_button"
-            android:layout_height="match_parent"
+        <Button
+            android:id="@+id/back_button"
             android:layout_width="match_parent"
-            android:text="@string/back_button"
-            android:onClick="Home_Intent"/>
-        <Button android:id="@+id/delete_fav_button"
             android:layout_height="match_parent"
+            android:onClick="Home_Intent"
+            android:text="@string/back_button" />
+
+        <Button
+            android:id="@+id/delete_fav_button"
             android:layout_width="match_parent"
-            android:text="@string/remove_fav" />
-        <Button android:id="@+id/view_fav_button"
             android:layout_height="match_parent"
+            android:text="@string/remove_fav"
+            android:onClick="RemoveFav_Action"/>
+
+        <Button
+            android:id="@+id/view_fav_button"
             android:layout_width="match_parent"
-            android:text="@string/view" />
+            android:layout_height="match_parent"
+            android:text="@string/view"
+            android:onClick="ViewWeb_Intent"/>
     </TableRow>
 </TableLayout>

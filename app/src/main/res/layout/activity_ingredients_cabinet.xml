@@ -15,21 +15,16 @@
         android:textColor="@color/teal_200"
         />
 
-    <EditText android:id="@+id/ingredient_name_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter your ingredient" />
-
     <TableRow>
+
         <EditText
-            android:id="@+id/quantity_input"
-            android:layout_width="match_parent"
+            android:id="@+id/ingredient_name_input"
+            android:layout_width="220dp"
             android:layout_height="match_parent"
-            android:ems="10"
-            android:inputType="number" />
+            android:hint="Enter your ingredient" />
         <Button android:id="@+id/submit_ingedient"
             android:layout_height="match_parent"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:text="@string/submit" />
     </TableRow>
     <ListView android:id="@+id/list_ingredients"

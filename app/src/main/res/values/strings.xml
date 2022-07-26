@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Chefable</string>
     <string name="host">https://spoonacular.com/</string>
+    <string name="recipe_host">https://spoonacular.com/recipes/</string>
     <string name="back_button">Back</string>
     <string name="ingredient_list">Ingredient List</string>
     <string name="search_button">Search</string>
