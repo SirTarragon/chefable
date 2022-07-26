@@ -1,84 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/IngredientListNavigationButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ingredient List"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:onClick="IngredientList_Intent"
-        />
-
-    <Button
-        android:id="@+id/SettingsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/setting_button"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:onClick="Settings_Intent"
-        />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
         android:textSize="35dp"
         android:textAlignment="center"
         android:textColor="@color/teal_200"
-        android:layout_toRightOf="@+id/IngredientListNavigationButton"
-        android:layout_toLeftOf="@+id/SettingsButton"
-        android:layout_alignParentTop="true"
         />
 
-    <EditText
-        android:id="@+id/SearchBarField"
-        android:layout_width="318dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/IngredientListNavigationButton"
-        android:layout_alignParentLeft="true"
-        />
 
-    <Button
-        android:id="@+id/SearchButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/SettingsButton"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@id/SearchBarField"
-        android:text="@string/search_button"
-        android:onClick="Search_Action"/>
+
+    <TableRow>
+
+        <Button
+            android:id="@+id/IngredientListNavigationButton"
+            android:layout_width="210dp"
+            android:layout_height="match_parent"
+            android:onClick="IngredientList_Intent"
+            android:text="Ingredient List" />
+
+        <Button
+            android:id="@+id/ViewFavoritesButton"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:onClick="ViewFavorites_Intent"
+            android:text="@string/view_favorites" />
+    </TableRow>
+
+    <TableRow>
+        <EditText
+            android:id="@+id/SearchBarField"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/IngredientListNavigationButton"
+            android:layout_alignParentLeft="true"
+            />
+        <Button
+            android:id="@+id/SearchButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/search_button"
+            android:onClick="Search_Action"/>
+    </TableRow>
 
     <ListView
         android:id="@+id/ItemsList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/AddToFavoritesButton"
-        android:layout_below="@id/SearchBarField" />
+        android:layout_weight="10" />
 
-    <Button
-        android:id="@+id/AddToFavoritesButton"
-        android:layout_width="206dp"
-        android:layout_height="wrap_content"
-        android:text="@string/add_favorites"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:onClick="AddFavorite_Action"
-        />
+    <TableRow>
+        <Button
+            android:id="@+id/AddToFavoritesButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/add_favorites"
+            android:layout_weight="1"
+            android:onClick="AddFavorite_Action"
+            />
 
-    <Button
-        android:id="@+id/ViewFavoritesButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/view_favorites"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@id/AddToFavoritesButton"
-        android:onClick="ViewFavorites_Intent"
-        />
-
-</RelativeLayout>
+        <Button android:id="@+id/ViewRecipeButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/view"
+            android:onClick="ViewWeb_Intent" />
+    </TableRow>
+</TableLayout>

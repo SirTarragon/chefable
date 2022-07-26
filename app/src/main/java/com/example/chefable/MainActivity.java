@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.main);
         itemsList = findViewById(R.id.ItemsList);
 
+        /*
         itemsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -43,15 +44,12 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
+         */
     }
 
     public void IngredientList_Intent(View view) {
         Intent intent = new Intent(this, IngredientsCabinet.class);
-        startActivity(intent);
-    }
-
-    public void Settings_Intent(View view) {
-        Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 
@@ -67,5 +65,14 @@ public class MainActivity extends AppCompatActivity
     public void ViewFavorites_Intent(View view) {
         Intent inten = new Intent(this, Favorites.class);
         startActivity(inten);
+    }
+
+    public void ViewWeb_Intent(View view) {
+        Recipe item = (Recipe) itemsList.getSelectedItem();
+        Bundle bundle = new Bundle();
+        bundle.putString("ARG_LINK", item.getLink().toString());
+        Intent intent = new Intent(MainActivity.this, RecipeViewer.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 }
