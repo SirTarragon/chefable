@@ -82,10 +82,12 @@ public class Favorites extends AppCompatActivity {
 
     public void ViewWeb_Intent(View view) {
         Recipe item = (Recipe) favorites_list.getSelectedItem();
-        Bundle bundle = new Bundle();
-        bundle.putString("ARG_LINK", item.getLink().toString());
-        Intent intent = new Intent(this, RecipeViewer.class);
-        intent.putExtras(bundle);
-        startActivity(intent);
+        if (item != null) {
+            Bundle bundle = new Bundle();
+            bundle.putString("ARG_LINK", item.getLink().toString());
+            Intent intent = new Intent(this, RecipeViewer.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
     }
 }

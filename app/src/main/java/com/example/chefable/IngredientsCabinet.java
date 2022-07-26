@@ -71,7 +71,8 @@ public class IngredientsCabinet extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if(snapshot.exists()) {
-                        Toast.makeText(IngredientsCabinet.this, "Ingredient already present in your digital cabinet",
+                        Toast.makeText(IngredientsCabinet.this,
+                                "Ingredient already present in your digital cabinet",
                                 Toast.LENGTH_SHORT).show();
                     } else {
                         ingredArrayList.add(val);
@@ -79,7 +80,8 @@ public class IngredientsCabinet extends AppCompatActivity {
                         FirebaseDatabase.getInstance().getReference().child("Ingredients")
                                 .push().setValue(val);
 
-                        Toast.makeText(IngredientsCabinet.this, "Ingredient added to cabinet", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(IngredientsCabinet.this,
+                                "Ingredient added to cabinet", Toast.LENGTH_SHORT).show();
                         arrayAdapter.notifyDataSetChanged();
                     }
                 }
