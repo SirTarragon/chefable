@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,19 +20,22 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
 {
     ArrayList<Recipe> recipeArrayList;
     ListView itemsList;
+    EditText input_search;
     ArrayAdapter<Recipe> arrayAdapter;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         itemsList = findViewById(R.id.ItemsList);
+        input_search = findViewById(R.id.SearchBarField);
 
         recipeArrayList = new ArrayList<>();
         arrayAdapter = new ArrayAdapter<>(MainActivity.this,
@@ -51,8 +55,49 @@ public class MainActivity extends AppCompatActivity
         ArrayList<String> ingredients = new ArrayList<>();
 
         // get ingredients stored in cabinet
+        Query query = FirebaseDatabase.getInstance().getReference().child("Ingredients");
 
-        // get search string
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot favorite_recipe : snapshot.getChildren()) {
+                    ingredients.add(favorite_recipe.getValue(String.class));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        // setup search string
+        String queryURL = "https://api.spoonacular.com/recipes/complexSearch";
+
+        boolean searchQue = false;
+
+        String searchVal = input_search.getText().toString();
+
+        if(searchVal.length() != 0) {
+            queryURL.concat("?query="+searchVal.toLowerCase());
+        }
+
+        if(ingredients.size() != 0) {
+            int pos = 0;
+            if(searchQue) {
+                queryURL.concat("&includeIngredients=");
+            } else {
+                queryURL.concat("?includeIngredients=");
+            }
+            for(String ingredient : ingredients) {
+                if(pos == 0) {
+                    queryURL.concat(ingredient.toLowerCase());
+                } else {
+                    queryURL.concat(",+"+ingredient.toLowerCase());
+                }
+                pos++;
+            }
+        }
 
         // set up API call
 
