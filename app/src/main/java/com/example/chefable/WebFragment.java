@@ -76,9 +76,4 @@ public class WebFragment extends Fragment {
         mWebView.setWebViewClient(new WebViewClient());
         return v;
     }
-
-    public void loadUrl(String url) {
-        mWebView.loadUrl(url);
-        mUri = url;
-    }
 }
