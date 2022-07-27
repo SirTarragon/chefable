@@ -72,23 +72,20 @@ public class MainActivity extends AppCompatActivity
         });
 
         // setup search string
-        String queryURL = "https://api.spoonacular.com/recipes/complexSearch";
-
-        boolean searchQue = false;
+        String queryURL =
+                "https://api.spoonacular.com/recipes/complexSearch?apiKey="+
+                "74c012848d124ff5ac41b6a48f7723f2";
 
         String searchVal = input_search.getText().toString();
 
         if(searchVal.length() != 0) {
-            queryURL.concat("?query="+searchVal.toLowerCase());
+            queryURL.concat("&query="+searchVal.toLowerCase());
         }
 
         if(ingredients.size() != 0) {
             int pos = 0;
-            if(searchQue) {
-                queryURL.concat("&includeIngredients=");
-            } else {
-                queryURL.concat("?includeIngredients=");
-            }
+            queryURL.concat("&includeIngredients=");
+
             for(String ingredient : ingredients) {
                 if(pos == 0) {
                     queryURL.concat(ingredient.toLowerCase());
@@ -98,6 +95,8 @@ public class MainActivity extends AppCompatActivity
                 pos++;
             }
         }
+
+        queryURL.concat("&number=10");
 
         // set up API call
 
