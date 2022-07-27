@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.ANRequest;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.ParsedRequestListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -20,6 +22,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -101,11 +104,26 @@ public class MainActivity extends AppCompatActivity
         queryURL.concat("&number=10");
 
         // set up API call
-        ANRequest reg = AndroidNetworking.get(queryURL).build();
 
         // search with API and convert data to Recipe format
 
         // populate itemsList and recipeArrayList
+
+        ANRequest reg = AndroidNetworking.get(queryURL).build();
+        reg.getAsObjectList(SpoonacularRecipe.class, new ParsedRequestListener<List<SpoonacularRecipe>>() {
+            @Override
+            public void onResponse(List<SpoonacularRecipe> response) {
+                for (SpoonacularRecipe recipe : response) {
+                    recipeArrayList.add(new Recipe(recipe));
+                }
+                arrayAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onError(ANError anError) {
+
+            }
+        });
     }
 
     public void AddFavorite_Action(View view) {

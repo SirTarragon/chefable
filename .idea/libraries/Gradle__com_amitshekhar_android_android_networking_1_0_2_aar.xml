@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.amitshekhar.android:android-networking:1.0.2@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/5a0df740474e7be477e5dc512e92010c/transformed/android-networking-1.0.2/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5a0df740474e7be477e5dc512e92010c/transformed/android-networking-1.0.2/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5a0df740474e7be477e5dc512e92010c/transformed/android-networking-1.0.2/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/cab63fe0f646c040820478554903838d/transformed/jetified-android-networking-1.0.2/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/cab63fe0f646c040820478554903838d/transformed/jetified-android-networking-1.0.2/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/cab63fe0f646c040820478554903838d/transformed/jetified-android-networking-1.0.2/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amitshekhar.android/android-networking/1.0.2/866743b4b91a1e598595ed7dd365add8d38f94be/android-networking-1.0.2-javadoc.jar!/" />
