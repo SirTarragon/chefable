@@ -44,6 +44,7 @@ public class IngredientsCabinet extends AppCompatActivity {
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ingredArrayList.clear();
                 for(DataSnapshot favorite_recipe : snapshot.getChildren()) {
                     ingredArrayList.add(favorite_recipe.getValue(String.class));
                     arrayAdapter.notifyDataSetChanged();
@@ -55,7 +56,7 @@ public class IngredientsCabinet extends AppCompatActivity {
 
             }
         });
-        
+
         ingred_list.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override
@@ -86,7 +87,6 @@ public class IngredientsCabinet extends AppCompatActivity {
                                 "Ingredient already present in your digital cabinet",
                                 Toast.LENGTH_SHORT).show();
                     } else {
-                        ingredArrayList.add(val);
 
                         FirebaseDatabase.getInstance().getReference().child("Ingredients")
                                 .push().setValue(val);
