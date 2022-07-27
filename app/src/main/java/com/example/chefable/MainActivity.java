@@ -2,6 +2,7 @@ package com.example.chefable;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.ANRequest;
 import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.AnalyticsListener;
 import com.androidnetworking.interfaces.ParsedRequestListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity
     ListView itemsList;
     EditText input_search;
     ArrayAdapter<Recipe> arrayAdapter;
+    ArrayList<String> ingredients;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -43,21 +47,11 @@ public class MainActivity extends AppCompatActivity
         input_search = findViewById(R.id.SearchBarField);
 
         recipeArrayList = new ArrayList<>();
+        ingredients = new ArrayList<>();
         arrayAdapter = new ArrayAdapter<>(MainActivity.this,
                 android.R.layout.simple_list_item_1,
                 recipeArrayList);
         itemsList.setAdapter(arrayAdapter);
-
-    }
-
-    public void IngredientList_Intent(View view) {
-        Intent intent = new Intent(this, IngredientsCabinet.class);
-        startActivity(intent);
-    }
-
-    public void Search_Action(View view) {
-        itemsList.clearChoices();
-        ArrayList<String> ingredients = new ArrayList<>();
 
         // get ingredients stored in cabinet
         Query query = FirebaseDatabase.getInstance().getReference().child("Ingredients");
@@ -76,6 +70,16 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+    }
+
+    public void IngredientList_Intent(View view) {
+        Intent intent = new Intent(this, IngredientsCabinet.class);
+        startActivity(intent);
+    }
+
+    public void Search_Action(View view) {
+        recipeArrayList.clear();
+
         // setup search string
         String queryURL =
                 "https://api.spoonacular.com/recipes/complexSearch?apiKey="+
@@ -84,24 +88,26 @@ public class MainActivity extends AppCompatActivity
         String searchVal = input_search.getText().toString();
 
         if(searchVal.length() != 0) {
-            queryURL.concat("&query="+searchVal.toLowerCase());
+            queryURL = queryURL.concat("&query="+searchVal.toLowerCase());
         }
 
         if(ingredients.size() != 0) {
             int pos = 0;
-            queryURL.concat("&includeIngredients=");
+            queryURL = queryURL.concat("&includeIngredients=");
 
             for(String ingredient : ingredients) {
                 if(pos == 0) {
-                    queryURL.concat(ingredient.toLowerCase());
+                    queryURL = queryURL.concat(ingredient.toLowerCase());
                 } else {
-                    queryURL.concat(",+"+ingredient.toLowerCase());
+                    queryURL = queryURL.concat(",+"+ingredient.toLowerCase());
                 }
                 pos++;
             }
         }
 
-        queryURL.concat("&number=10");
+        queryURL = queryURL.concat("&number=10");
+
+        Log.d("query", queryURL);
 
         // set up API call
 
@@ -110,10 +116,22 @@ public class MainActivity extends AppCompatActivity
         // populate itemsList and recipeArrayList
 
         ANRequest reg = AndroidNetworking.get(queryURL).build();
-        reg.getAsObjectList(SpoonacularRecipe.class, new ParsedRequestListener<List<SpoonacularRecipe>>() {
+                reg.setAnalyticsListener(new AnalyticsListener() {
+            @Override
+            public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                Log.d("ANRequest reg", " timeTakenInMillis : " + timeTakenInMillis);
+                Log.d("ANRequest reg", " bytesSent : " + bytesSent);
+                Log.d("ANRequest reg", " bytesReceived : " + bytesReceived);
+                Log.d("ANRequest reg", " isFromCache : " + isFromCache);
+            }
+        }).getAsObjectList(SpoonacularRecipe.class, new ParsedRequestListener<List<SpoonacularRecipe>>() {
             @Override
             public void onResponse(List<SpoonacularRecipe> response) {
                 for (SpoonacularRecipe recipe : response) {
+                    Log.d("id", String.valueOf(recipe.getID()));
+                    Log.d("title", recipe.getTitle());
+                    Log.d("image", recipe.getImage());
+                    Log.d("imageType", recipe.getImageType());
                     recipeArrayList.add(new Recipe(recipe));
                 }
                 arrayAdapter.notifyDataSetChanged();
