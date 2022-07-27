@@ -6,11 +6,14 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 public class RecipeViewer extends AppCompatActivity {
     public static final String ARG_LINK = "link";
     private static final String TAG_WEB_FRAGMENT = "web_fragment";
+
+    private WebFragment webFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +26,8 @@ public class RecipeViewer extends AppCompatActivity {
         FragmentTransaction trans;
         trans = manager.beginTransaction();
 
-        WebFragment webFragment;
         if (bundle != null) {
+            Log.d("BundleNotNull", "Inside of grabbing of bundle");
             String url = bundle.getString(ARG_LINK);
             webFragment = WebFragment.newInstance(url);
         } else {

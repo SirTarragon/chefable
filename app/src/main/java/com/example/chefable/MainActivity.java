@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.ANRequest;
+import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.AnalyticsListener;
 import com.androidnetworking.interfaces.ParsedRequestListener;
@@ -81,44 +82,43 @@ public class MainActivity extends AppCompatActivity
         recipeArrayList.clear();
 
         // setup search string
-        String queryURL =
-                "https://api.spoonacular.com/recipes/complexSearch?apiKey="+
-                "74c012848d124ff5ac41b6a48f7723f2";
-
         String searchVal = input_search.getText().toString();
 
+        // set up API call
+        ANRequest.GetRequestBuilder builder = AndroidNetworking.get(
+                "https://api.spoonacular.com/recipes/complexSearch")
+                .addQueryParameter("apiKey", "74c012848d124ff5ac41b6a48f7723f2");
+
         if(searchVal.length() != 0) {
-            queryURL = queryURL.concat("&query="+searchVal.toLowerCase());
+            builder.addQueryParameter("query", searchVal);
         }
 
         if(ingredients.size() != 0) {
             int pos = 0;
-            queryURL = queryURL.concat("&includeIngredients=");
+
+            String ingredBuilder = "";
 
             for(String ingredient : ingredients) {
                 if(pos == 0) {
-                    queryURL = queryURL.concat(ingredient.toLowerCase());
+                    ingredBuilder = ingredBuilder.concat(ingredient.toLowerCase());
                 } else {
-                    queryURL = queryURL.concat(",+"+ingredient.toLowerCase());
+                    ingredBuilder = ingredBuilder.concat(","+ingredient.toLowerCase());
                 }
                 pos++;
             }
+
+            builder.addQueryParameter("includeIngredients", ingredBuilder);
         }
 
-        queryURL = queryURL.concat("&number=10");
-
-        Log.d("query", queryURL);
-
-        // set up API call
+        ANRequest reg = builder.addQueryParameter("number", "10")
+                        .setPriority(Priority.MEDIUM)
+                        .build();
 
         // search with API and convert data to Recipe format
-
-        // populate itemsList and recipeArrayList
-
-        ANRequest reg = AndroidNetworking.get(queryURL).build();
-                reg.setAnalyticsListener(new AnalyticsListener() {
+        reg.setAnalyticsListener(new AnalyticsListener() {
             @Override
-            public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+            public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived,
+                                   boolean isFromCache) {
                 Log.d("ANRequest reg", " timeTakenInMillis : " + timeTakenInMillis);
                 Log.d("ANRequest reg", " bytesSent : " + bytesSent);
                 Log.d("ANRequest reg", " bytesReceived : " + bytesReceived);
@@ -127,11 +127,13 @@ public class MainActivity extends AppCompatActivity
         }).getAsObjectList(SpoonacularRecipe.class, new ParsedRequestListener<List<SpoonacularRecipe>>() {
             @Override
             public void onResponse(List<SpoonacularRecipe> response) {
+                // populate itemsList and recipeArrayList
                 for (SpoonacularRecipe recipe : response) {
                     Log.d("id", String.valueOf(recipe.getID()));
                     Log.d("title", recipe.getTitle());
                     Log.d("image", recipe.getImage());
                     Log.d("imageType", recipe.getImageType());
+
                     recipeArrayList.add(new Recipe(recipe));
                 }
                 arrayAdapter.notifyDataSetChanged();
@@ -139,7 +141,9 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onError(ANError anError) {
-
+                Toast.makeText(MainActivity.this,
+                        "There was an error on receiving info from the API.",
+                        Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -184,7 +188,7 @@ public class MainActivity extends AppCompatActivity
         Recipe item = (Recipe) itemsList.getSelectedItem();
         if (item != null) {
             Bundle bundle = new Bundle();
-            bundle.putString("ARG_LINK", item.getLink().toString());
+            bundle.putString("link", item.getLink().toString());
             Intent intent = new Intent(MainActivity.this, RecipeViewer.class);
             intent.putExtras(bundle);
             startActivity(intent);

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -30,7 +31,7 @@ public class Favorites extends AppCompatActivity {
         setContentView(R.layout.activity_favorites);
         favorites_list = findViewById(R.id.list_favorites);
         favoritesArrayList = new ArrayList<>();
-        Recipe test_recipe = new Recipe(1, "Pizza");
+        Recipe test_recipe = new Recipe(663136, "Thai Pizza");
         favoritesArrayList.add(test_recipe);
 
         Query query = FirebaseDatabase.getInstance().getReference().child("Favorites");
@@ -96,8 +97,9 @@ public class Favorites extends AppCompatActivity {
 
     public void ViewWeb_Intent(View view) {
         if (selected_item != null) {
+            Log.d("ViewWeb", "Link: " + selected_item.getLink().toString());
             Bundle bundle = new Bundle();
-            bundle.putString("ARG_LINK", selected_item.getLink().toString());
+            bundle.putString("link", selected_item.getLink().toString());
             Intent intent = new Intent(this, RecipeViewer.class);
             intent.putExtras(bundle);
             startActivity(intent);
