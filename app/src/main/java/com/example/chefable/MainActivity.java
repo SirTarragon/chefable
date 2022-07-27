@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        AndroidNetworking.initialize(getApplicationContext());
         itemsList = findViewById(R.id.ItemsList);
         input_search = findViewById(R.id.SearchBarField);
 
