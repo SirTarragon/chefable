@@ -3,8 +3,6 @@ package com.example.chefable;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -13,6 +11,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.ANRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -20,7 +20,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -34,7 +33,9 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
         AndroidNetworking.initialize(getApplicationContext());
+
         itemsList = findViewById(R.id.ItemsList);
         input_search = findViewById(R.id.SearchBarField);
 
@@ -100,6 +101,7 @@ public class MainActivity extends AppCompatActivity
         queryURL.concat("&number=10");
 
         // set up API call
+        ANRequest reg = AndroidNetworking.get(queryURL).build();
 
         // search with API and convert data to Recipe format
 
