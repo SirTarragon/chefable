@@ -36,4 +36,10 @@ public class Recipe {
         String linkstring = builder.toString().concat(String.valueOf(id));
         return Uri.withAppendedPath(Uri.parse("https://spoonacular.com/recipes/"),linkstring);
     }
+
+    @Override
+    public String toString()
+    {
+        return this.ID + ": " + this.title;
+    }
 }
