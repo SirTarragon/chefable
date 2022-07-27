@@ -13,6 +13,12 @@ public class Recipe {
         link = generateLink(id, name);
     }
 
+    public Recipe(SpoonacularRecipe spoon) {
+        ID = spoon.getID();
+        title = spoon.getTitle();
+        link = generateLink(ID, title);
+    }
+
     public int getID() {return ID;}
     public String getTitle() {return title;}
     public Uri getLink() {return link;}
