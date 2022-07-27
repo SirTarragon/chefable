@@ -25,6 +25,7 @@ public class IngredientsCabinet extends AppCompatActivity {
     EditText input_ingred;
     ListView ingred_list;
     ArrayAdapter<String> arrayAdapter;
+    String selected_item = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,15 @@ public class IngredientsCabinet extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+        
+        ingred_list.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                selected_item = ingred_list.getItemAtPosition(position).toString();
             }
         });
     }
@@ -96,12 +106,11 @@ public class IngredientsCabinet extends AppCompatActivity {
     }
 
     public void RemoveIngred_Action(View view) {
-        String item = (String) ingred_list.getSelectedItem();
-        if (item != null) {
-            ingredArrayList.remove(item);
+        if (selected_item != null) {
+            ingredArrayList.remove(selected_item);
 
             Query query = FirebaseDatabase.getInstance().getReference()
-                    .child("Ingredients").orderByValue().equalTo(item);
+                    .child("Ingredients").orderByValue().equalTo(selected_item);
             query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
